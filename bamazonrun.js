@@ -112,19 +112,39 @@ var question = [
 {
     message: "Which product would you like to buy?",
     type: "input",
-    name: "id",
-    // validate: function validateFirstName(item_id){
-    //     if (isNaN(item_id) || item_id === ""){
-    //         return item_id;
+    name: "id", 
+    validate: function (userInput)
+    {
+        if ( userInput == "" || isNaN(userInput) || userInput < 1 || userInput > 17)
+        {
+            console.log("You have entered a invalid item id.\n");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
 
-    //     }
-    // }
+    }
 
 },{
     message: "how many units would you like to buy?",
     type: "input",
-    name: "units"
+    name: "units", validate: function (userInput)
+    { 
+        if (userInput == "" || isNaN(userInput) )
+        {
+            console.log("You have entered a invalid unit count.\n");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }];
+
+
 inquirer.prompt(question).then(processAnswers);
 
 
